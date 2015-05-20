@@ -1,3 +1,0 @@
-class ps-app::myservice(){
-  
-}
