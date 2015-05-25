@@ -1,18 +1,8 @@
 class ps_sql::fill_northwind_db($instance){
-	windows_firewall::exception { 'Allow sql port':
-	  ensure       => present,
-	  direction    => 'in',
-	  action       => 'Allow',
-	  enabled      => 'yes',
-	  protocol     => 'TCP',
-	  local_port   => '1433',
-	  display_name => 'Allow MSSQL TCP connection port',
-	  description  => 'Allow MSSQL TCP connection port',
-	}
-
-	$ps_sql_db_exist_check = "\"invoke-sqlcmd -Query \'use Northwind;select top 1 * from orders\' -ServerInstance $instance -ErrorAction Stop\""
+	$import_module = "import-module \'C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\PowerShell\\Modules\\sqlps\'"
+	$ps_sql_db_exist_check = "\"$import_module; invoke-sqlcmd -Query \'use Northwind;select top 1 * from orders\' -ServerInstance $instance -ErrorAction Stop\""
 	$file_db_create = "c:\\temp\\instnwnd.sql"
-	$ps_sql_db_create = "\"invoke-sqlcmd -InputFile \"$file_db_create\" -ServerInstance $instance -ErrorAction Stop\""
+	$ps_sql_db_create = "\"$import_module; invoke-sqlcmd -InputFile \"$file_db_create\" -ServerInstance $instance -ErrorAction Stop\""
 
 	file { "$file_db_create":
 		ensure  => "present",
@@ -21,7 +11,7 @@ class ps_sql::fill_northwind_db($instance){
 	}
 	exec { "Create_Northwind_Db":
 		command => "$powershell $ps_sql_db_create",
-		require => [File["$file_db_create"],Class['ps_sql::sqlexpress']],
+		require => [File["$file_db_create"],Class['ps_sql::powershell_module']],
 		unless  => "$powershell ${ps_sql_db_exist_check}",
 	}	
 }

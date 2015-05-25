@@ -5,8 +5,14 @@ class ps_web::iis() {
     ensure  => present,
     all 	=> true
   }
-  dism {'IIS-StaticContent':
+   
+  dism {['IIS-StaticContent','IIS-ASPNET45',]:
     ensure  => present,
+    all 	=> true,
     require => Dism['IIS-WebServer']
+  }
+  dism {'IIS-HttpErrors':
+    ensure  => present,
+    all   => true
   }  
 }

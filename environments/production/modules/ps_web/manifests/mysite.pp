@@ -1,4 +1,6 @@
 class ps_web::mysite($user,$pass,$enable32app='false'){
+  include ps_web::copy_files_old
+  #include copy_files_new
   iis_apppool {'PuppetIisDemo':
     ensure                    => present,
     managedpipelinemode       => 'Integrated',
@@ -31,30 +33,5 @@ class ps_web::mysite($user,$pass,$enable32app='false'){
     ensure          => present,
     iis_app         => 'mysite/',
     physicalpath    => 'C:\ps\site'
-  }
-  # file { 'C:\ps':
-  #   ensure  => directory,
-  #   source_permissions => ignore,
-  # }
-  # file { 'C:\ps\site':
-  #   ensure  => directory,
-  #   source_permissions => ignore,
-  #   require => File['C:\ps']
-  # }
-  
-  file { 'c:\\temp\\web.zip':
-    ensure             => file,
-    source             => 'puppet:///modules/ps_web/web.zip',
-    source_permissions => ignore,
-  }
-  unzip { "web.zip":
-      source  => 'C:\temp\web.zip',
-      creates => 'C:\ps\site\web.config',
-  }
-
-  $directories = ['c:\ps','c:\ps\site','c:\ps\logs']
-  ps_common::create_directories {'mysite':
-    directoryArray => $directories,
-    before => Unzip["web.zip"]
   }
 }
