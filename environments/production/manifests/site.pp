@@ -12,7 +12,7 @@ node 'dsccl1.hosting.ad.viacom.com' {
     pass => 'Epam_2010',
   }
   include ps_sql::sqlexpress
-  # class {'ps_sql::fill_northwind_db':
-  #   instance => 'dsccl1'
-  # }
+  class {'ps_sql::fill_northwind_db':
+    instance => 'dsccl1'
+  }
 }
