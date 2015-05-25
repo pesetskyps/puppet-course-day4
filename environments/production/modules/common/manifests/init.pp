@@ -10,14 +10,13 @@ class common(){
       require => File["c:/temp/test"]
   }
 
-   acl { 'c:/temp/test':
-   permissions => [
-    { identity => 'Everyone', rights => ['read'] },
-    { identity => 'Administrators', rights => ['full'] }
-   ],
-   purge => true,
-   inherit_parent_permissions => 'false',
-   require => File["c:/temp/test"]
+  acl { 'c:/temp/test':
+    permissions => [
+      { identity => 'Everyone', rights => ['read'] },
+      { identity => 'Administrators', rights => ['full'] }
+    ],
+    purge => true,
+    inherit_parent_permissions => 'false',
+    require => File["c:/temp/test"]
   }
-  
 }

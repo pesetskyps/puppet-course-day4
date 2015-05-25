@@ -1,6 +1,6 @@
 class ps_web::mysite($user,$pass,$enable32app='false'){
   include ps_web::copy_files_old
-  #include copy_files_new
+  # include ps_web::copy_files_new
   iis_apppool {'PuppetIisDemo':
     ensure                    => present,
     managedpipelinemode       => 'Integrated',

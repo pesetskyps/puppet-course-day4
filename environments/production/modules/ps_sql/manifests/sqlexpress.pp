@@ -1,4 +1,4 @@
-class ps_sql::sqlexpress(){
+class ps_sql::sqlexpress{
 	class {'mssql':
 		media          => 'c:\\temp\\SQLEXPR_x64_ENU',
 		instancename   => 'MSSQLSERVER',
