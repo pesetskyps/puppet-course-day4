@@ -16,4 +16,5 @@ node 'dsccl1.hosting.ad.viacom.com' {
   # class {'ps_sql::fill_northwind_db':
   #   instance => 'dsccl1'
   # }
+  # Vedmich
 }
