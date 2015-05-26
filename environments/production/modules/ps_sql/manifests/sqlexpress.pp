@@ -6,7 +6,7 @@ class ps_sql::sqlexpress{
 		instancedir    => 'C:\\Program Files\\Microsoft SQL Server',
 		ascollation    => 'Latin1_General_CI_AS',
 		sqlcollation   => 'SQL_Latin1_General_CP1_CI_AS',
-		admin          => '"dsccl1\SQLSVC"',
+		admin          => "$hostname\\SQLSVC",
 		sapwd          => 'Epam_2010',
 		iniFile        => 'ps_sql/ConfigurationFile.ini'
 	}
