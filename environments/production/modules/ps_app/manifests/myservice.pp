@@ -1,6 +1,6 @@
 class ps_app::myservice($user,$pass){
-  include ps_app::copy_files_old
-  # include ps_app::copy_files_new
+  # include ps_app::copy_files_old
+  include ps_app::copy_files_new
 
   $service = 'myservice'
   $local_myserviceservice_path = 'C:\ps\service\NorthWind.console.exe'
@@ -10,8 +10,8 @@ class ps_app::myservice($user,$pass){
 
   exec { "Install_${service}":
     command => "C:\\Windows\\system32\\cmd.exe /c sc create ${service} binPath= \"${local_myserviceservice_path}\"",
-    require => Class['ps_app::copy_files_old'],
-    # require => Class['ps_app::copy_files_new'],
+    # require => Class['ps_app::copy_files_old'],
+    require => Class['ps_app::copy_files_new'],
     unless  => "$powershell ${ps_myservice_check_service}",
   }
 
