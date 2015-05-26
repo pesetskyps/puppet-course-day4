@@ -1,0 +1,719 @@
+{
+  "project_page": "https://github.com/simondean/puppet-iis",
+  "description": "IIS module. Configures app pools, sites, applications and virtual directories.",
+  "source": "https://github.com/simondean/puppet-iis",
+  "summary": "IIS module. Configures app pools, sites, applications and virtual directories.",
+  "author": "Simon Dean",
+  "types": [
+    {
+      "properties": [
+        {
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`.",
+          "name": "ensure"
+        },
+        {
+          "doc": "",
+          "name": "queuelength"
+        },
+        {
+          "doc": "",
+          "name": "autostart"
+        },
+        {
+          "doc": "",
+          "name": "enable32bitapponwin64"
+        },
+        {
+          "doc": "",
+          "name": "managedruntimeversion"
+        },
+        {
+          "doc": "",
+          "name": "managedruntimeloader"
+        },
+        {
+          "doc": "",
+          "name": "enableconfigurationoverride"
+        },
+        {
+          "doc": "",
+          "name": "managedpipelinemode"
+        },
+        {
+          "doc": "",
+          "name": "clrconfigfile"
+        },
+        {
+          "doc": "",
+          "name": "passanonymoustoken"
+        },
+        {
+          "doc": "",
+          "name": "startmode"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_identitytype"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_username"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_password"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_loaduserprofile"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_setprofileenvironment"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_logontype"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_manualgroupmembership"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_idletimeout"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_maxprocesses"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_shutdowntimelimit"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_startuptimelimit"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_pingingenabled"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_pinginterval"
+        },
+        {
+          "doc": "",
+          "name": "processmodel_pingresponsetime"
+        },
+        {
+          "doc": "",
+          "name": "recycling_disallowoverlappingrotation"
+        },
+        {
+          "doc": "",
+          "name": "recycling_disallowrotationonconfigchange"
+        },
+        {
+          "doc": "",
+          "name": "recycling_logeventonrecycle"
+        },
+        {
+          "doc": "",
+          "name": "recycling_periodicrestart_memory"
+        },
+        {
+          "doc": "",
+          "name": "recycling_periodicrestart_privatememory"
+        },
+        {
+          "doc": "",
+          "name": "recycling_periodicrestart_requests"
+        },
+        {
+          "doc": "",
+          "name": "recycling_periodicrestart_time"
+        },
+        {
+          "doc": "",
+          "name": "failure_loadbalancercapabilities"
+        },
+        {
+          "doc": "",
+          "name": "failure_orphanworkerprocess"
+        },
+        {
+          "doc": "",
+          "name": "failure_orphanactionexe"
+        },
+        {
+          "doc": "",
+          "name": "failure_orphanactionparams"
+        },
+        {
+          "doc": "",
+          "name": "failure_rapidfailprotection"
+        },
+        {
+          "doc": "",
+          "name": "failure_rapidfailprotectioninterval"
+        },
+        {
+          "doc": "",
+          "name": "failure_rapidfailprotectionmaxcrashes"
+        },
+        {
+          "doc": "",
+          "name": "failure_autoshutdownexe"
+        },
+        {
+          "doc": "",
+          "name": "failure_autoshutdownparams"
+        },
+        {
+          "doc": "",
+          "name": "cpu_limit"
+        },
+        {
+          "doc": "",
+          "name": "cpu_action"
+        },
+        {
+          "doc": "",
+          "name": "cpu_resetinterval"
+        },
+        {
+          "doc": "",
+          "name": "cpu_smpaffinitized"
+        },
+        {
+          "doc": "",
+          "name": "cpu_smpprocessoraffinitymask"
+        },
+        {
+          "doc": "",
+          "name": "cpu_smpprocessoraffinitymask2"
+        }
+      ],
+      "doc": "IIS App Pool",
+      "providers": [
+        {
+          "doc": "IIS App Pool\n\nRequired binaries: `c:/windows/system32/inetsrv/appcmd.exe`.  Default for `operatingsystem` == `windows`.",
+          "name": "iis_apppool"
+        }
+      ],
+      "parameters": [
+        {
+          "doc": "App pool name",
+          "name": "name"
+        }
+      ],
+      "name": "iis_apppool"
+    },
+    {
+      "properties": [
+        {
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`.",
+          "name": "ensure"
+        },
+        {
+          "doc": "Physical path",
+          "name": "physicalpath"
+        },
+        {
+          "doc": "Logon method for the physical path",
+          "name": "logonmethod"
+        },
+        {
+          "doc": "User name that can access the physical path",
+          "name": "username"
+        },
+        {
+          "doc": "Password for the user name",
+          "name": "password"
+        },
+        {
+          "doc": "Controls whether IIS will load just the Web.config file in the physical path (false) or also the Web.config files in the sub-directories of the physical path (true)",
+          "name": "allowsubdirconfig"
+        }
+      ],
+      "doc": "IIS Virtual Directory",
+      "providers": [
+        {
+          "doc": "IIS Virtual Directory\n\nRequired binaries: `c:/windows/system32/inetsrv/appcmd.exe`.  Default for `operatingsystem` == `windows`.",
+          "name": "iis_vdir"
+        }
+      ],
+      "parameters": [
+        {
+          "doc": "Virtual directory name  Values can match `/.+\\/.*/`.",
+          "name": "name"
+        },
+        {
+          "doc": "Path of the app the virtual directory is under",
+          "name": "iis_app"
+        }
+      ],
+      "name": "iis_vdir"
+    },
+    {
+      "properties": [
+        {
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`.",
+          "name": "ensure"
+        },
+        {
+          "doc": "Number assigned to a site when it is created. Default Web Site has an id of 1. Other sites are assigned a random id by IIS when they are created",
+          "name": "id"
+        },
+        {
+          "doc": "Whether the site should be started automatically when the IIS management service is started",
+          "name": "serverautostart"
+        },
+        {
+          "doc": "Limits: Maximum network bandwidth in bytes per second to be consumed by the site",
+          "name": "limits_maxbandwidth"
+        },
+        {
+          "doc": "Limits: Maximum number of simultaneous client connections for a site",
+          "name": "limits_maxconnections"
+        },
+        {
+          "doc": "Limits: The amount of time in seconds that IIS waits before disconnecting a connection that has become inactive",
+          "name": "limits_connectiontimeout"
+        },
+        {
+          "doc": "Logging: The categories of information that are logged",
+          "name": "logfile_logextfileflags"
+        },
+        {
+          "doc": "Logging: COM object class IDs for custom modules",
+          "name": "logfile_customlogpluginclsid"
+        },
+        {
+          "doc": "Logging: Log file format",
+          "name": "logfile_logformat"
+        },
+        {
+          "doc": "Logging: Directory that log files and supporting logging files are saved to",
+          "name": "logfile_directory"
+        },
+        {
+          "doc": "Logging: ",
+          "name": "logfile_period"
+        },
+        {
+          "doc": "Logging: Maximum size in bytes for the log file. When reached, a new log file will be created. Only applies when logfile_period is set to MaxSize.  Minimum value for this property is 1,048,576",
+          "name": "logfile_truncatesize"
+        },
+        {
+          "doc": "Logging: Whether when a new log file is created based on time, this is done based on UTC or local time.  false indicates UTC, true indicates local time",
+          "name": "logfile_localtimerollover"
+        },
+        {
+          "doc": "Logging: Whether logging is enabled",
+          "name": "logfile_enabled"
+        },
+        {
+          "doc": "Trace failed requests logging: Whether it is enabled",
+          "name": "tracefailedrequestslogging_enabled"
+        },
+        {
+          "doc": "Trace failed requests logging: Directory that log files are saved to",
+          "name": "tracefailedrequestslogging_directory"
+        },
+        {
+          "doc": "Trace failed requests logging: Maximum number of failed request log files to keep for the site",
+          "name": "tracefailedrequestslogging_maxlogfiles"
+        },
+        {
+          "doc": "Trace failed requests logging: Maximum file size in kilobytes for the logs",
+          "name": "tracefailedrequestslogging_maxlogfilesizekb"
+        },
+        {
+          "doc": "Trace failed requests logging: Whether custom actions are enabled",
+          "name": "tracefailedrequestslogging_customactionsenabled"
+        },
+        {
+          "doc": "Application defaults: Application virtual path",
+          "name": "applicationdefaults_path"
+        },
+        {
+          "doc": "Application defaults: Application pool the application is assigned to",
+          "name": "applicationdefaults_applicationpool"
+        },
+        {
+          "doc": "Application defaults: Enabled protocols",
+          "name": "applicationdefaults_enabledprotocols"
+        },
+        {
+          "doc": "Application defaults: Whether autostart is enabled",
+          "name": "applicationdefaults_serviceautostartenabled"
+        },
+        {
+          "doc": "Application defaults: Name of the autostart provider, if enabled",
+          "name": "applicationdefaults_serviceautostartprovider"
+        },
+        {
+          "doc": "Virtual directory defaults: Virtual directory virtual path",
+          "name": "virtualdirectorydefaults_path"
+        },
+        {
+          "doc": "Virtual directory defaults: Physical path",
+          "name": "virtualdirectorydefaults_physicalpath"
+        },
+        {
+          "doc": "Virtual directory defaults: Logon method for the physical path",
+          "name": "virtualdirectorydefaults_logonmethod"
+        },
+        {
+          "doc": "Virtual directory defaults: User name that can access the physical path",
+          "name": "virtualdirectorydefaults_username"
+        },
+        {
+          "doc": "Virtual directory defaults: Password for the user name",
+          "name": "virtualdirectorydefaults_password"
+        },
+        {
+          "doc": "Virtual directory defaults: Controls whether IIS will load just the Web.config file in the physical path (false) or also the Web.config files in the sub-directories of the physical path (true)",
+          "name": "virtualdirectorydefaults_allowsubdirconfig"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_allowutf8"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_serverautostart"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_unauthenticatedtimeout"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_controlchanneltimeout"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_datachanneltimeout"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_disablesocketpooling"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_serverlistenbacklog"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_minbytespersecond"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_maxconnections"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_resetonmaxconnections"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_connections_maxbandwidth"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_datachannelsecurity_matchclientaddressforport"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_datachannelsecurity_matchclientaddressforpasv"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_commandfiltering_maxcommandline"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_commandfiltering_allowunlisted"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_ssl_servercerthash"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_ssl_servercertstorename"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_ssl_ssl128"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_ssl_controlchannelpolicy"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_ssl_datachannelpolicy"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_sslclientcertificates_clientcertificatepolicy"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_sslclientcertificates_useactivedirectorymapping"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_sslclientcertificates_validationflags"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_sslclientcertificates_revocationfreshnesstime"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_sslclientcertificates_revocationurlretrievaltimeout"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_anonymousauthentication_enabled"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_anonymousauthentication_username"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_anonymousauthentication_password"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_anonymousauthentication_defaultlogondomain"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_anonymousauthentication_logonmethod"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_basicauthentication_enabled"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_basicauthentication_defaultlogondomain"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_basicauthentication_logonmethod"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_security_authentication_clientcertauthentication_enabled"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_messages_exitmessage"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_messages_greetingmessage"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_messages_bannermessage"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_messages_maxclientsmessage"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_messages_suppressdefaultbanner"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_messages_allowlocaldetailederrors"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_messages_expandvariables"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_filehandling_keeppartialuploads"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_filehandling_allowreplaceonrename"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_filehandling_allowreaduploadsinprogress"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_firewallsupport_externalip4address"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_userisolation_mode"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_userisolation_activedirectory_adusername"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_userisolation_activedirectory_adpassword"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_userisolation_activedirectory_adcacherefresh"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_directorybrowse_showflags"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_directorybrowse_virtualdirectorytimeout"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_logfile_logextfileflags"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_logfile_directory"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_logfile_period"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_logfile_truncatesize"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_logfile_localtimerollover"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_logfile_enabled"
+        },
+        {
+          "doc": "",
+          "name": "ftpserver_logfile_selectivelogging"
+        },
+        {
+          "doc": "",
+          "name": "bindings"
+        }
+      ],
+      "doc": "IIS Site",
+      "providers": [
+        {
+          "doc": "IIS Site\n\nRequired binaries: `c:/windows/system32/inetsrv/appcmd.exe`.  Default for `operatingsystem` == `windows`.",
+          "name": "iis_site"
+        }
+      ],
+      "parameters": [
+        {
+          "doc": "Site name",
+          "name": "name"
+        }
+      ],
+      "name": "iis_site"
+    },
+    {
+      "properties": [
+        {
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`.",
+          "name": "ensure"
+        },
+        {
+          "doc": "Application pool the application is assigned to",
+          "name": "applicationpool"
+        },
+        {
+          "doc": "Enabled protocols",
+          "name": "enabledprotocols"
+        },
+        {
+          "doc": "Whether autostart is enabled",
+          "name": "serviceautostartenabled"
+        },
+        {
+          "doc": "Name of the autostart provider, if enabled",
+          "name": "serviceautostartprovider"
+        },
+        {
+          "doc": "Virtual directory defaults: Virtual directory virtual path",
+          "name": "virtualdirectorydefaults_path"
+        },
+        {
+          "doc": "Virtual directory defaults: Physical path",
+          "name": "virtualdirectorydefaults_physicalpath"
+        },
+        {
+          "doc": "Virtual directory defaults: Logon method for the physical path",
+          "name": "virtualdirectorydefaults_logonmethod"
+        },
+        {
+          "doc": "Virtual directory defaults: User name that can access the physical path",
+          "name": "virtualdirectorydefaults_username"
+        },
+        {
+          "doc": "Virtual directory defaults: Password for the user name",
+          "name": "virtualdirectorydefaults_password"
+        },
+        {
+          "doc": "Virtual directory defaults: Controls whether IIS will load just the Web.config file in the physical path (false) or also the Web.config files in the sub-directories of the physical path (true)",
+          "name": "virtualdirectorydefaults_allowsubdirconfig"
+        }
+      ],
+      "doc": "IIS App",
+      "providers": [
+        {
+          "doc": "IIS App\n\nRequired binaries: `c:/windows/system32/inetsrv/appcmd.exe`.  Default for `operatingsystem` == `windows`.",
+          "name": "iis_app"
+        }
+      ],
+      "parameters": [
+        {
+          "doc": "App name  Values can match `/.+\\/.*/`.",
+          "name": "name"
+        }
+      ],
+      "name": "iis_app"
+    }
+  ],
+  "dependencies": [
+
+  ],
+  "version": "0.1.3",
+  "checksums": {
+    "tests/iis_apppool.pp": "228c8d71885af069593b5b623b6ea41a",
+    "lib/puppet/provider/iis/iis_object.rb": "adecae9923500ce9d045a21e409a46db",
+    "lib/puppet/type/iis/iis_file_system_path_property.rb": "0fb551625805d11de796ac1a40d1e812",
+    "lib/puppet/type/iis_vdir.rb": "c1cf00deabd0ad3069713d0914156517",
+    "lib/puppet/provider/iis_apppool/iis_apppool.rb": "520ef85244393fa950af03c91f69b663",
+    "lib/puppet/provider/iis_vdir/iis_vdir.rb": "f0ca7528593566cf6ead26104eb4ca8a",
+    "lib/puppet/type/iis_app.rb": "a57c091e8bd394c27a320a74707fa0c2",
+    "lib/puppet/type/iis_apppool.rb": "a1efc55ddf71f62067d2957f09b240ce",
+    "tests/init.pp": "d41d8cd98f00b204e9800998ecf8427e",
+    "lib/puppet/provider/iis_app/iis_app.rb": "805c95bf6de020b5afb744ebffe6d7f5",
+    "lib/puppet/type/iis_site.rb": "e6f23ffedf6dbd04df4993ca32630d8f",
+    "lib/puppet/type/iis/iis_property.rb": "dc8a0f2fdb84919bd50da5c95b71e96b",
+    "Modulefile": "83f2a2d8e23892d91224b2fbc99ce7ca",
+    "lib/puppet/provider/iis_site/iis_site.rb": "493c9feafa25a834dc849ad884f1a6b2"
+  },
+  "license": "Apache License, Version 2.0",
+  "name": "simondean-iis"
+}
