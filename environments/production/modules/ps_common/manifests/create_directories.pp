@@ -3,5 +3,5 @@ define ps_common::create_directories($directoryArray){
     if ! defined (File[$directory]) {
       file { $directory: ensure => directory }
     }
-  } 
+  }
 }

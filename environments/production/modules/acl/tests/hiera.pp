@@ -19,13 +19,13 @@ file {'c:/temp':
 #}
 
 acl { 'c:\temp':
-  permissions => [
+  permissions                => [
     {
       identity => 'Administrators',
       rights   => [full]
     }
   ],
-  owner       => 'Administrators',
+  owner                      => 'Administrators',
   inherit_parent_permissions => true
 }
 
