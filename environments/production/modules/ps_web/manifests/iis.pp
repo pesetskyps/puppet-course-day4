@@ -1,18 +1,15 @@
-class ps_web::iis{
+class ps_web::iis($featuresToInclude='IIS-WebServer', $featuresToExclude=''){
 
-  #Install IIS-Role and features from answer file
-  dism {'IIS-WebServer':
-    ensure => present,
-    all    => true
+  #uninstall
+  if($featuresToExclude != ''){
+    dism {$featuresToExclude:
+      ensure  => absent,    
+    }
   }
 
-  dism {['IIS-StaticContent','IIS-ASPNET45',]:
+  #install
+  dism {$featuresToInclude:
     ensure  => present,
     all     => true,
-    require => Dism['IIS-WebServer']
-  }
-  dism {'IIS-HttpErrors':
-    ensure => present,
-    all    => true
   }
 }

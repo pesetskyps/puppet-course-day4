@@ -1,50 +1,84 @@
-class ps_web::mysite($user='NetworkService',$pass='null',$enable32app=false){
+class ps_web::mysite (
+  #site settings
+  $sitedirectory,
+  $bindings,
+  $sitename               = $::ps_web::mysite::params::sitename,
+  $id                     = $::ps_web::mysite::params::id,
+  #deplyment settings
+  Variant[Boolean, Enum['true', 'false']]
+  $deploy                 = $::ps_web::mysite::params::deploy, 
+  $deploypackLocation     = $::ps_web::mysite::params::deploypackLocation,
+
+  #apppool settings
+  $user                   = $::ps_web::mysite::params::user,
+  $pass                   = $::ps_web::mysite::params::pass,
+  $enable32app            = $::ps_web::mysite::params::enable32app,
+  $apppoolname            = $::ps_web::mysite::params::apppoolname,
+  $managedruntimeversion  = $::ps_web::mysite::params::managedruntimeversion,
+  $queuelength            = $::ps_web::mysite::params::queuelength,
+
+  #logging settings
+  $logdirectory           = $::ps_web::mysite::params::logdirectory,
+  $logfile_fields         = $::ps_web::mysite::params::logfile_fields,
+  Variant[String, Enum['Daily', 'Hourly','MaxSize','Monthly','Weekly']]
+  $log_rotation_period    = $::ps_web::mysite::params::log_rotation_period,
+  Variant[Boolean, Enum['true', 'false']]
+  $logfile_enabled        = $::ps_web::mysite::params::logfile_enabled,
+) inherits ps_web::mysite::params {
   # include ps_web::copy_files_old
   include ps_web::copy_files_new
-  if(($user == 'NetworkService')){
-    iis_apppool {'PuppetIisDemo':
-      ensure                    => present,
-      managedpipelinemode       => 'Integrated',
-      managedruntimeversion     => 'v4.0',
-      enable32bitapponwin64     =>  $enable32app,
-      processmodel_identitytype => 'NetworkService',
-      queuelength               => '10000',
-    }
+
+  #settings apppool default
+  Iis_apppool {
+    ensure                    => present,
+    managedpipelinemode       => 'Integrated',
+    managedruntimeversion     => $managedruntimeversion,
+    enable32bitapponwin64     => $enable32app,
+    processmodel_identitytype => $user,
+    queuelength               => $queuelength,
+  }
+
+  if($user in ['NetworkService','LocalService','LocalSystem']){
+    iis_apppool {$apppoolname:}
   }
   else{
-    iis_apppool {'PuppetIisDemo':
-      ensure                    => present,
-      managedpipelinemode       => 'Integrated',
-      managedruntimeversion     => 'v4.0',
+    iis_apppool {$apppoolname:
       processmodel_identitytype => 'SpecificUser',
       processmodel_username     => $user,
       processmodel_password     => $pass,
-      enable32bitapponwin64     =>  $enable32app,
-      queuelength               => '10000',
     }
   }
-
-  iis_site {'mysite':
+  #settings site default
+  Iis_site {
     ensure                  => present,
     serverautostart         => true,
-    id                      => '10',
-    bindings                => ['http/*:25999:'],
-    logfile_enabled         => true,
+    bindings                => $bindings,
+    logfile_enabled         => $logfile_enabled,
     logfile_logformat       => 'W3C',
-    logfile_period          => 'Hourly',
-    logfile_directory       => 'C:\ps\logs\iis',
-    logfile_logextfileflags => 'Date, Time, ClientIP, UserName, ServerIP, Method, UriStem, UriQuery, HttpStatus, TimeTaken, ServerPort, UserAgent, Referer, Host',
-    require                 => Iis_apppool['PuppetIisDemo']
+    logfile_period          => $log_rotation_period,
+    logfile_directory       => $logdirectory,
+    logfile_logextfileflags => $logfile_fields,
   }
-  ->
-  iis_app {'mysite/':
+
+  if($id != '') {
+    iis_site {$sitename:
+      id => $id,
+    }
+  }
+  else {
+      iis_site {$sitename:}
+  }
+
+  iis_app {"$sitename/":
     ensure          => present,
-    applicationpool => 'PuppetIisDemo',
+    applicationpool => $apppoolname,
+    require         => [Iis_site[$sitename],Iis_apppool[$apppoolname]]
   }
-  ->
-  iis_vdir {'mysite/':
+
+  iis_vdir {"$sitename/":
     ensure       => present,
-    iis_app      => 'mysite/',
-    physicalpath => 'C:\ps\site'
+    iis_app      => "$sitename/",
+    physicalpath => $sitedirectory,
+    require      => Iis_app["$sitename/"]
   }
 }
