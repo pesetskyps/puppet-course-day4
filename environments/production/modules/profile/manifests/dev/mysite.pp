@@ -4,6 +4,12 @@ class profile::dev::mysite{
 	include iis_site::params
 	iis_site::createsite {'profile::dev::mysite':
 		sitedirectory => "c:\\ps\\mysite",
-		bindings => ['http/*:25999:'],  
+		bindings => ['http/*:25999:'],
+		sitename => "mysite",
 	}
+	iis_site::createsite {'profile::dev::thier':
+		sitedirectory => "c:\\ps\\their",
+		bindings => ['http/*:23333:'],
+		sitename => "thier",
+	}	
 }

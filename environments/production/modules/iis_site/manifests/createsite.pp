@@ -2,7 +2,7 @@ define iis_site::createsite (
   #site settings
   $sitedirectory,
   $bindings,
-  $sitename               = $::iis_site::params::sitename,
+  $sitename,
   $id                     = $::iis_site::params::id,
   #deplyment settings
   Variant[Boolean, Enum['true', 'false']]
@@ -13,7 +13,7 @@ define iis_site::createsite (
   $user                   = $::iis_site::params::user,
   $pass                   = $::iis_site::params::pass,
   $enable32app            = $::iis_site::params::enable32app,
-  $apppoolname            = $::iis_site::params::apppoolname,
+  $apppoolname            = $sitename,
   $managedruntimeversion  = $::iis_site::params::managedruntimeversion,
   $queuelength            = $::iis_site::params::queuelength,
 
@@ -25,6 +25,7 @@ define iis_site::createsite (
   Variant[Boolean, Enum['true', 'false']]
   $logfile_enabled        = $::iis_site::params::logfile_enabled,
 ) {
+
   # include ps_web::copy_files_old
   include ps_web::copy_files_new
   #settings apppool default
