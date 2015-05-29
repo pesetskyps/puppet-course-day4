@@ -7,10 +7,8 @@ node 'win-r3sga74n50h' {
     featuresToInclude => ['IIS-WebServer','IIS-StaticContent','IIS-ASPNET45'],
     featuresToExclude => ['IIS-HttpErrors']
   }
-  class {'ps_web::mysite':
-    bindings => ['http/*:25999:'],
-    sitedirectory => "c:\\ps\\mysite"
-  }
+
+  include profile::dev::mysite
 
   # class {'ps_app::myservice':
   #   user => 'LocalSystem',

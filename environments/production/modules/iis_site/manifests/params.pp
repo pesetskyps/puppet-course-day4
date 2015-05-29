@@ -1,4 +1,4 @@
-class ps_web::mysite::params(
+class iis_site::params(
   #site settings
   $sitedirectory='',
   $bindings='',
