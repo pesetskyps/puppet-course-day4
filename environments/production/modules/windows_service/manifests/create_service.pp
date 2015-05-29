@@ -83,8 +83,21 @@
  	if($configs != ''){
  		validate_hash($configs)
 		$configs.each |String $config_name, Hash $config_values| {
+			notify {"$config_values":}
+			if !has_key($config_values, 'windows_config_path') {
+			  fail("no windows_config_path key defined in hash configs. please specify")
+			}
+			if !has_key($config_values, 'puppet_template_path') {
+			  fail("no puppet_template_path key defined in hash configs. please specify")
+			}
+			validate_hash($config_values['values'])
+
 			file { "${servicename}_${config_name}":
-				ensure => file,
+				path               => $config_values['windows_config_path'],
+				ensure 				=> file,
+				# content            	=> regsubst(template($config_values['puppet_template_path']), '\n', "\r\n", 'EMG'),
+				content            	=> template($config_values['puppet_template_path']),
+				source_permissions 	=> ignore,
 			}
 		}
  	}
