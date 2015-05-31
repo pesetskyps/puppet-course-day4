@@ -16,9 +16,15 @@
  	$password = '',
  	Variant[Boolean, Enum['true', 'false']]
  	$running = false,
+
+ 	#deployment setup
 	Variant[Boolean, Enum['true', 'false']]
 	$deploy                 = false, 
 	$deploypackLocation     = '',
+	$deploy_pack_windows_temp_path='',
+	$creates_file='',
+	$directories='',
+	#config change
 	$configs= '',
  ) 
  {
@@ -73,7 +79,13 @@
  	}
  	if(($deploy == true) and ($running == true)){
  		# include ps_app::copy_files_old
- 		include ps_app::copy_files_new
+ 		class {'windows_service::deploy_service':
+ 			servicename => $servicename,
+ 			deploy_pack_puppet_path => $deploypackLocation ,
+ 			deploy_pack_windows_temp_path => $deploy_pack_windows_temp_path,
+ 			creates_file => ['c:\ps','c:\ps\service','c:\ps\logs'],
+ 			directories => ,
+ 		}
 	 	service {$servicename :
 	 	  ensure => running,
 	 	  require => Exec["Install_${servicename}"],
@@ -83,7 +95,6 @@
  	if($configs != ''){
  		validate_hash($configs)
 		$configs.each |String $config_name, Hash $config_values| {
-			notify {"$config_values":}
 			if !has_key($config_values, 'windows_config_path') {
 			  fail("no windows_config_path key defined in hash configs. please specify")
 			}

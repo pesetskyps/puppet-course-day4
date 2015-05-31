@@ -1,4 +1,8 @@
-class ps_sql::sqlexpress{
+class ps_sql::sqlexpress
+(
+	$include_powershell_module = true
+)
+{
 	class {'mssql':
 		media          => 'c:\\temp\\SQLEXPR_x64_ENU',
 		instancename   => 'MSSQLSERVER',
@@ -12,5 +16,8 @@ class ps_sql::sqlexpress{
 	}
 
 	include ps_sql::firewall
-	include ps_sql::powershell_module	
+	if ($include_powershell_module == true) {
+		include ps_sql::powershell_module
+	}
+	
 }
