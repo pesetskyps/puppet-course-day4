@@ -2,7 +2,7 @@ class profile::dev::myservice{
   windows_service::create_service{"myservice":
     servicename => "myservice",
     servicedirectory => "c:\\ps\\service\\myservice",
-    exe_Name => "myservice.console.exe",
+    exe_Name => "NorthWind.console.exe",
     startup_type => "auto",
     username => "LocalSystem",
     password => "`\"`\"",
@@ -16,6 +16,6 @@ class profile::dev::myservice{
         }
       },
       # 'app.config' => { 'ff' => "value",'server' => "localhost",}
-    }
+    },
   }
 } 

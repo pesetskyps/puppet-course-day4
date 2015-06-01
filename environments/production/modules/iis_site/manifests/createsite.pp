@@ -4,10 +4,6 @@ define iis_site::createsite (
   $bindings,
   $sitename,
   $id                     = $::iis_site::params::id,
-  #deplyment settings
-  Variant[Boolean, Enum['true', 'false']]
-  $deploy                 = $::iis_site::params::deploy, 
-  $deploypackLocation     = $::iis_site::params::deploypackLocation,
 
   #apppool settings
   $user                   = $::iis_site::params::user,
@@ -25,9 +21,6 @@ define iis_site::createsite (
   Variant[Boolean, Enum['true', 'false']]
   $logfile_enabled        = $::iis_site::params::logfile_enabled,
 ) {
-
-  # include ps_web::copy_files_old
-  include ps_web::copy_files_new
   #settings apppool default
   Iis_apppool {
     ensure                    => present,

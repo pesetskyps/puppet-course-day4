@@ -17,20 +17,10 @@
  	Variant[Boolean, Enum['true', 'false']]
  	$running = false,
 
- 	#deployment setup
-	Variant[Boolean, Enum['true', 'false']]
-	$deploy                 = false, 
-	$deploypackLocation     = '',
-	$deploy_pack_windows_temp_path='',
-	$creates_file='',
-	$directories='',
 	#config change
 	$configs= '',
  ) 
  {
- 	if(($deploy == true) and ($deploypackLocation == '')){
- 		fail("Please specify the deploy pack location at puppet master in format: puppet:///<modulename>/<path in module files directory>")
- 	}
  	if (($username != '') and ($password == '')) {
  		fail("Please specify a password for the user ${username}")
  	}
@@ -59,6 +49,7 @@
  	  unless  => template('windows_service/powershell/check_service.ps1'),
  	  logoutput => "on_failure",
  	}
+
  	#Set mode service will run
  	exec { "Set_startmode_${servicename}":
  	  command => "C:\\Windows\\system32\\cmd.exe /c sc.exe config ${servicename} start= ${startup_type}",
@@ -67,8 +58,9 @@
  	  unless  => template('windows_service/powershell/check_service_mode.ps1'),
  	  logoutput => "on_failure",
  	}
+
+ 	#Set user service will run from
  	if($username != ''){
-	 	#Set user service will run from
 	 	exec { "Set_user_${servicename}":
 	 	  command => "C:\\Windows\\system32\\cmd.exe /c sc.exe config ${servicename} obj= ${username} password= ${password}",
 	 	  require => Exec["Install_${servicename}"],
@@ -77,21 +69,7 @@
 	 	  logoutput => "on_failure",
 	 	}
  	}
- 	if(($deploy == true) and ($running == true)){
- 		# include ps_app::copy_files_old
- 		class {'windows_service::deploy_service':
- 			servicename => $servicename,
- 			deploy_pack_puppet_path => $deploypackLocation ,
- 			deploy_pack_windows_temp_path => $deploy_pack_windows_temp_path,
- 			creates_file => ['c:\ps','c:\ps\service','c:\ps\logs'],
- 			directories => ,
- 		}
-	 	service {$servicename :
-	 	  ensure => running,
-	 	  require => Exec["Install_${servicename}"],
-	 	}
- 	}
-
+ 	#set configs
  	if($configs != ''){
  		validate_hash($configs)
 		$configs.each |String $config_name, Hash $config_values| {
