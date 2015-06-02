@@ -1,0 +1,5 @@
+---
+ntp_servers:
+        - clock1.pro-puppet.com
+        - clock2.pro-puppet.com
+        - clock3.pro-puppet.com

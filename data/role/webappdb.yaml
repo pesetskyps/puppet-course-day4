@@ -1,0 +1,13 @@
+classes:
+  - profile::dev::base
+  - profile::dev::iis
+  - profile::dev::mysite
+  - profile::dev::myservice        
+  - profile::dev::sqlexpress
+  - profile::dev::create_northwind_database
+
+
+ps_sql::fill_northwind_db::instance: "%{::hostname}"
+ps_sql::fill_northwind_db::database_check_script: 'ps_sql/powershell/check_dabatase_exist.ps1'
+ps_sql::fill_northwind_db::database_create_sql_script: 'puppet:///modules/ps_sql/instnwnd.sql'
+ps_sql::fill_northwind_db::database_create_sql_script_windows_tmp_path: 'c:\\temp\\instnwnd.sql'
