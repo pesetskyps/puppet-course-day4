@@ -2,5 +2,4 @@
 #
 #
 class role {
-	include ps_common::firewall
 }

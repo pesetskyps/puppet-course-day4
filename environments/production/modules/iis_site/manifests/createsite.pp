@@ -3,23 +3,23 @@ define iis_site::createsite (
   $sitedirectory,
   $bindings,
   $sitename,
-  $id                     = $::iis_site::params::id,
+  $id,
 
   #apppool settings
-  $user                   = $::iis_site::params::user,
-  $pass                   = $::iis_site::params::pass,
-  $enable32app            = $::iis_site::params::enable32app,
-  $apppoolname            = $sitename,
-  $managedruntimeversion  = $::iis_site::params::managedruntimeversion,
-  $queuelength            = $::iis_site::params::queuelength,
+  $user,
+  $pass,
+  $enable32app,
+  $apppoolname,
+  $managedruntimeversion,
+  $queuelength,
 
   #logging settings
-  $logdirectory           = $::iis_site::params::logdirectory,
-  $logfile_fields         = $::iis_site::params::logfile_fields,
+  $logdirectory,
+  $logfile_fields,
   Variant[String, Enum['Daily', 'Hourly','MaxSize','Monthly','Weekly']]
-  $log_rotation_period    = $::iis_site::params::log_rotation_period,
+  $log_rotation_period,
   Variant[Boolean, Enum['true', 'false']]
-  $logfile_enabled        = $::iis_site::params::logfile_enabled,
+  $logfile_enabled,
 ) {
   #settings apppool default
   Iis_apppool {

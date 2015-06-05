@@ -6,7 +6,7 @@
   - "%{::env}/%{::role}"
   - "role/%{::role}"
   - "environment/%{::env}"
-  - global
+  - defaults
 
 :yaml:
 # datadir is empty here, so hiera uses its defaults:
@@ -14,3 +14,4 @@
 # - %CommonAppData%\PuppetLabs\hiera\var on Windows
 # When specifying a datadir, make sure the directory exists.
   :datadir: /etc/puppet/data
+:merge_behavior: deeper

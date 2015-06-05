@@ -11,14 +11,12 @@
  	#Name of the exe file that will be started as windows service: e.g. NorthWind.console.exe
  	$exe_Name,
  	Variant[String, Enum['auto', 'demand', 'disabled']]
- 	$startup_type = 'demand', 	
- 	$username = '',
- 	$password = '',
- 	Variant[Boolean, Enum['true', 'false']]
- 	$running = false,
+ 	$startup_type, 	
+ 	$username,
+ 	$password,
 
 	#config change
-	$configs= '',
+	$configs,
  ) 
  {
  	if (($username != '') and ($password == '')) {

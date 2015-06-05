@@ -1,21 +1,5 @@
 class profile::dev::myservice{
-  windows_service::create_service{"myservice":
-    servicename => "myservice",
-    servicedirectory => "c:\\ps\\service\\myservice",
-    exe_Name => "NorthWind.console.exe",
-    startup_type => "auto",
-    username => "LocalSystem",
-    password => "`\"`\"",
-    configs => {
-      'web.config' => { 
-        'windows_config_path' => "c:\\ps\\service\\myservice\\NorthWind.console.exe.config",
-        'puppet_template_path' => "windows_service/NorthWind.console.exe.config.erb",
-        'values' => { 
-          'connectionstring' => "data source=localhost,1433;initial catalog=Northwind;User Id=sa; password=Epam_2010;",
-          'wcfserver' => "localhost",
-        }
-      },
-      # 'app.config' => { 'ff' => "value",'server' => "localhost",}
-    },
-  }
+  $services = hiera_hash('windows_service::create_services')
+  $service_defaults = hiera_hash('windows_service::create_service::defaults')
+  create_resources('windows_service::create_service', $services,$service_defaults)
 } 

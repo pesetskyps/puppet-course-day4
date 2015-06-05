@@ -1,15 +1,5 @@
 class profile::dev::mysite{
-	#icnlude is a workaround to give the parameters to iis_site::createsite defined type. Classes are evaluated first by puppet, so we will have the values for defined type provided
-	#use Hiera instead
-	include iis_site::params
-	iis_site::createsite {'profile::dev::mysite':
-		sitedirectory => "c:\\ps\\mysite",
-		bindings => ['http/*:25999:'],
-		sitename => "mysite",
-	}
-	iis_site::createsite {'profile::dev::thier':
-		sitedirectory => "c:\\ps\\their",
-		bindings => ['http/*:23333:'],
-		sitename => "thier",
-	}	
+	$sites = hiera_hash('iis_site::createsites')
+	$site_defaults = hiera_hash('iis_site::defaults')
+	create_resources('iis_site::createsite', $sites,$site_defaults)
 }

@@ -1,5 +1,4 @@
-class ps_web::iis($featuresToInclude='IIS-WebServer', $featuresToExclude=''){
-
+class ps_iis::iis($featuresToInclude='IIS-WebServer', $featuresToExclude=''){
   #uninstall
   if($featuresToExclude != ''){
     dism {$featuresToExclude:

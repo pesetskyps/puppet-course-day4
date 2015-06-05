@@ -1,13 +1,58 @@
-classes:
-  - profile::dev::base
-  - profile::dev::iis
-  - profile::dev::mysite
-  - profile::dev::myservice        
-  - profile::dev::sqlexpress
-  - profile::dev::create_northwind_database
+---
+#profile::dev::iis
+ps_iis::iis::featuresToInclude:
+  - 'IIS-WebServer'
+  - 'IIS-StaticContent'
+  - 'IIS-ASPNET45'
+ps_iis::iis::featuresToExclude:
+  - 'IIS-HttpErrors'
 
+#profile::dev::mysite
+iis_site::createsites:
+  profile::dev::mysite:
+    sitedirectory: c:\ps\mysite
+    bindings:
+      - 'http/*:25999:'
+    sitename: mysite
+    apppoolname: mysite
+  profile::dev::thier:
+    sitedirectory: c:\ps\their
+    bindings:
+      - 'http/*:23333:'
+    sitename: thier
+    apppoolname: thier
+
+#profile::dev::myservice
+windows_service::create_services:
+  myservice:
+    servicename: myservice
+    servicedirectory: c:\ps\service\myservice
+    exe_Name: NorthWind.console.exe
+    startup_type: auto
+    username: LocalSystem
+    password: "`\"`\""
+    configs:
+      web.config:
+        windows_config_path: c:\ps\service\myservice\NorthWind.console.exe.config
+        puppet_template_path: windows_service/NorthWind.console.exe.config.erb
+        values:
+          connectionstring: data source=localhost,1433;initial catalog=Northwind;User Id=sa; password=Epam_2010;
+          wcfserver: localhost
+
+#profile::dev::sqlexpress
+mssql::install:
+  mssql:
+    media: c:\temp\SQLEXPR_x64_ENU
+    instancename: MSSQLSERVER
+    features: SQLENGINE
+    instancedir: C:\Program Files\Microsoft SQL Server
+    ascollation: Latin1_General_CI_AS
+    sqlcollation: SQL_Latin1_General_CP1_CI_AS
+    admin: "%{::hostname}\\SQLSVC"
+    sapwd: Epam_2010
+    iniFile: ps_sql/ConfigurationFile.ini
 
 ps_sql::fill_northwind_db::instance: "%{::hostname}"
 ps_sql::fill_northwind_db::database_check_script: 'ps_sql/powershell/check_dabatase_exist.ps1'
 ps_sql::fill_northwind_db::database_create_sql_script: 'puppet:///modules/ps_sql/instnwnd.sql'
-ps_sql::fill_northwind_db::database_create_sql_script_windows_tmp_path: 'c:\\temp\\instnwnd.sql'
+ps_sql::fill_northwind_db::database_create_sql_script_windows_tmp_path: 'c:\temp\instnwnd.sql'

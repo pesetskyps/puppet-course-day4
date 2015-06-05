@@ -1,5 +1,19 @@
----
-ntp_servers:
-        - clock1.pro-puppet.com
-        - clock2.pro-puppet.com
-        - clock3.pro-puppet.com
+iis_site::defaults:
+  id: ''
+  user: 'NetworkService'
+  pass: ''
+  enable32app: false
+  managedruntimeversion: 'v4.0'
+  queuelength: 10000
+  logdirectory: c:\inetpub\logs
+  logfile_fields: 'Date, Time, ClientIP, UserName, ServerIP, Method, UriStem, UriQuery, HttpStatus, TimeTaken, ServerPort, UserAgent, Referer, Host'
+  log_rotation_period: 'Hourly'
+  logfile_enabled: true
+
+windows_service::create_service::defaults:
+  startup_type: demand
+  username: ''
+  password: ''
+  configs: ''
+
+profile::dev::sqlexpress::include_powershell_module: true

@@ -1,3 +1,8 @@
 class role::northwind::dev::webappdb inherits role {
-	create_resources('class',hiera('classes'))
+	include profile::dev::base
+	include profile::dev::iis
+	include profile::dev::mysite
+	include profile::dev::myservice        
+	include profile::dev::sqlexpress
+	include profile::dev::create_northwind_database
 }
