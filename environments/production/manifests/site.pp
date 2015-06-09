@@ -28,8 +28,16 @@ node default {
   #   show_global_scope => true,
   # }
 
+  #require class
   # include ps_m4_examples::require_example
-  include ps_m4_examples::resource_defaults_ex
+
+  #resource defaults
+  # include ps_m4_examples::resource_defaults_ex
+
+  #stdlib functions
+  # include ps_m4_examples::stdlib_ex
+
+  
 }
 
 
