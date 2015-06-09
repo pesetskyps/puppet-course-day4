@@ -9,5 +9,7 @@ class ps_m4_examples::resource_defaults_ex {
 	}
 
 	file {"/tmp/test1":}
-	file {"/tmp/test2":}
+	file {"/tmp/test2":
+		ensure => directory,
+	}
 }

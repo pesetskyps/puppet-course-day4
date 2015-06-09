@@ -29,7 +29,7 @@ node default {
   # }
 
   # include ps_m4_examples::require_example
-  # include ps_m4_examples::resource_defaults_ex
+  include ps_m4_examples::resource_defaults_ex
 }
 
 
