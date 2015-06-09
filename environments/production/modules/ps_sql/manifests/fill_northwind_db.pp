@@ -5,7 +5,6 @@ class ps_sql::fill_northwind_db(
   $database_create_sql_script_windows_tmp_path,
 )
 {
-  notify{$instance:}
   file { $database_create_sql_script_windows_tmp_path:
     ensure           => 'present',
     source           => $database_create_sql_script,

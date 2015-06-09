@@ -17,3 +17,8 @@ windows_service::create_service::defaults:
   configs: ''
 
 profile::dev::sqlexpress::include_powershell_module: true
+
+ps_iis::iis::featuresToInclude:
+  - 'IIS-WebServer'
+ps_iis::iis::featuresToExclude:
+  - ''
