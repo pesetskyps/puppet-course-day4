@@ -37,7 +37,7 @@ node default {
   #stdlib functions
   # include ps_m4_examples::stdlib_ex
 
-  
+
 }
 
 
@@ -60,5 +60,5 @@ node default {
 
 node 'win-r3sga74n50h' {
   # include role::northwind::dev::webappdb
-
+  # include role::web
 }
