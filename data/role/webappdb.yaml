@@ -36,7 +36,7 @@ windows_service::create_services:
         windows_config_path: c:\ps\service\myservice\NorthWind.console.exe.config
         puppet_template_path: windows_service/NorthWind.console.exe.config.erb
         values:
-          connectionstring: data source=localhost,1433;initial catalog=Northwind;User Id=sa; password=Epam_2010;
+          connectionstring: data source=localhost,1433;initial catalog=Northwind;User Id=sa; password=Zabbix_2015;
           wcfserver: localhost
 
 #profile::dev::sqlexpress
@@ -49,7 +49,7 @@ mssql::install:
     ascollation: Latin1_General_CI_AS
     sqlcollation: SQL_Latin1_General_CP1_CI_AS
     admin: "%{::hostname}\\SQLSVC"
-    sapwd: Epam_2010
+    sapwd: Zabbix_2015
     iniFile: ps_sql/ConfigurationFile.ini
 
 ps_sql::fill_northwind_db::instance: "%{::hostname}"

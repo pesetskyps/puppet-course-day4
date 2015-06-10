@@ -1,5 +1,5 @@
 # Class: ps_m4_examples::stdlib_ex
-#notify{basename('/tmp/test.txt'):}
+#
 #
 class ps_m4_examples::stdlib_ex {
 	#returns filename
