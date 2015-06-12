@@ -39,8 +39,14 @@ node default {
   # include ps_m4_examples::stdlib_ex
   
   #bad practicies
-  include ps_m4_examples::bad_practicies_2
-  include ps_m4_examples::bad_practicies
+  # if defined
+  #include ps_m4_examples::bad_practicies_2
+  #include ps_m4_examples::bad_practicies
+  
+  # dyn scope
+  include ps_m4_examples::bad_practicies_dyn_scope
+  
+  
 }
 
 node 'win-r3sga74n50h' {
