@@ -1,0 +1,20 @@
+{
+  "CHANGELOG.md": "c66454fe579bba201c4fb1e3bad68617",
+  "Gemfile": "c35b618bc8467645cdc9d34fb5e2ec35",
+  "LICENSE": "893a915529331a97b36e78af93f1a79c",
+  "README.md": "819ee859d95103de1854d0cc37b12e02",
+  "Rakefile": "0254db5d3fc38c67a2c160d7296a24f8",
+  "lib/puppet/reports/tagmail.rb": "59ed6ef6e091e49d4a7b3e02db54e181",
+  "metadata.json": "a407c46d67d3f72d3cd6fa59627c2af8",
+  "spec/acceptance/nodesets/centos-6-x64-vcloud.yml": "aaa7352c8a5f5244a6f9008112918074",
+  "spec/acceptance/nodesets/debian-6-x64-vcloud.yml": "1b55d338f169d1ed8ffb80957cde3827",
+  "spec/acceptance/nodesets/debian-7-x64-vcloud.yml": "83c1c189f46fced0a8d5ec27a3e12877",
+  "spec/acceptance/nodesets/ubuntu-1404-x64-vcloud.yml": "5d6418c0770a81b4f60de790f754634e",
+  "spec/acceptance/tagmail_spec.rb": "1692946dda4b9246ec923da945c878d4",
+  "spec/fixtures/unit/reports/tagmail/tagmail_email.conf": "0333df38b163c895354026096b3cf204",
+  "spec/fixtures/unit/reports/tagmail/tagmail_failers.conf": "66a0e27a13e793d3de135c7fdb90b04f",
+  "spec/fixtures/unit/reports/tagmail/tagmail_passers.conf": "38e2dd02dbd5d57fabbac0531dd046f2",
+  "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+  "spec/spec_helper_acceptance.rb": "40719a6643d5570212d0f72517499f39",
+  "spec/unit/reports/tagmail_spec.rb": "65b6857d70161ce6f53aaa7cddb33c0a"
+}

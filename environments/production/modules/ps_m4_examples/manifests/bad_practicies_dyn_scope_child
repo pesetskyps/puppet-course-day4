@@ -1,3 +1,0 @@
-class ps_m4_examples::bad_practicies_dyn_scope_child {
-	$myvar = "child"
-}

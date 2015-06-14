@@ -21,13 +21,13 @@ node default {
   # 	myhashparam => {config => "app.config",}
   #}
 
-  # #variable scoping
+  #variable scoping
   # class {"ps_m4_examples::variables_invoker":
   #   show_dynamic_scope => true,
   #   show_parent_level_scope => true,
   #   show_node_level_scope => true,
   #   show_global_scope => true,
-  #}
+  # }
 
   # require class
   # include ps_m4_examples::require_example
@@ -52,4 +52,5 @@ node default {
 node 'win-r3sga74n50h' {
   # include role::northwind::dev::webappdb
   # include role::web
+# notify{"bla":}
 }
