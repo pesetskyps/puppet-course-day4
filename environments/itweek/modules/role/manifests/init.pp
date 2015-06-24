@@ -1,0 +1,5 @@
+# Class: role
+#
+#
+class role {
+}
