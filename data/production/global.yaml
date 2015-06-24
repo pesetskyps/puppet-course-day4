@@ -1,0 +1,3 @@
+---
+puppetmaster: 'puppet'
+ntp_servers: clock4.pro-puppet.com
