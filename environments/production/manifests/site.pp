@@ -10,18 +10,14 @@ node default {
   # 	foldername => "ps_bla",
   # 	notify_me => 'true',
   # 	myhashparam => {config => "app.config",}
-  #}
+  # }
 
   # #params principle
   # class {"ps_m4_examples::add_site":
-  # 	sitename => "testlongname",
-  # 	# notify_me => 'bla',
-  # 	foldername => "ps_bla",
-  # 	notify_me => 'true',
-  # 	myhashparam => {config => "app.config",}
-  #}
+  # 	sitename => "yaaaahooooo",
+  # }
 
-  #variable scoping
+  # #variable scoping
   # class {"ps_m4_examples::variables_invoker":
   #   show_dynamic_scope => true,
   #   show_parent_level_scope => true,
@@ -40,17 +36,15 @@ node default {
   
   #bad practicies
   # if defined
-  #include ps_m4_examples::bad_practicies_2
-  #include ps_m4_examples::bad_practicies
-  
-  # dyn scope
-  include ps_m4_examples::bad_practicies_dyn_scope
-  
-  
+  # include ps_m4_examples::bad_practicies_2
+  # include ps_m4_examples::bad_practicies
+    
+  # #roles and profiles
+  # include role::web
 }
 
-node 'win-r3sga74n50h' {
-  # include role::northwind::dev::webappdb
-  # include role::web
-# notify{"bla":}
-}
+# node 'win-r3sga74n50h' {
+#  include role::northwind::dev::webappdb
+#   # include role::web
+# # notify{"bla":}
+# }

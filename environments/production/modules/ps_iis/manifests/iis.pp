@@ -1,4 +1,4 @@
-class ps_iis::iis($featuresToInclude, $featuresToExclude){
+class ps_iis::iis($featuresToInclude, $featuresToExclude='undef'){
 
   #install
   dism {$featuresToInclude:
@@ -7,7 +7,7 @@ class ps_iis::iis($featuresToInclude, $featuresToExclude){
   }
 
   #uninstall
-  if($featuresToExclude != ''){
+  if($featuresToExclude != 'undef'){
     dism {$featuresToExclude:
       ensure  => absent,
       require => Dism[$featuresToInclude]   

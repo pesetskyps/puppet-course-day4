@@ -6,7 +6,7 @@ class ps_m4_examples::parameters(
 	
 	Pattern[/ps.*/]
 	$foldername="ps_name",
-  	Struct[{config       => Enum['web.config', 'app.config']}]
+  	Struct[{config => Enum['web.config', 'app.config']}]
     $myhashparam = {config => 'web.config'},
 ){
 	if str2bool($notify_me) {

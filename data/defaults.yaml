@@ -20,5 +20,4 @@ profile::dev::sqlexpress::include_powershell_module: true
 
 ps_iis::iis::featuresToInclude:
   - 'IIS-WebServer'
-ps_iis::iis::featuresToExclude:
-  - ''
+ps_iis::iis::featuresToExclude: undef
