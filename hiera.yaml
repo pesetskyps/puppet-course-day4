@@ -2,16 +2,15 @@
 :backends:
   - yaml
 :hierarchy:
-  - "node/%{::fqdn}"
-  - "%{::env}/%{::role}"
-  - "role/%{::role}"
-  - "environment/%{::env}"
-  - defaults
+  - "%{::environment}/node/%{::fqdn}"
+  - "%{::environment}/%{::env}/%{::role}"
+  - "%{::environment}/role/%{::role}"
+  - "%{::environment}/defaults"
 
 :yaml:
 # datadir is empty here, so hiera uses its defaults:
 # - /var/lib/hiera on *nix
 # - %CommonAppData%\PuppetLabs\hiera\var on Windows
 # When specifying a datadir, make sure the directory exists.
-  :datadir: /etc/puppet/data
+:datadir: /etc/puppet/data
 :merge_behavior: deeper
