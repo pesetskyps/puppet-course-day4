@@ -1,8 +1,5 @@
 # Class: profile::dev::create_northwind_database
 #
 #
-class profile::dev::create_northwind_database {
-	class {'ps_sql::fill_northwind_db':
-		require => Class['mssql'],
-	}
+class profile::dev::create_northwind_database inherits profile::base::allproducts::create_northwind_database {
 }

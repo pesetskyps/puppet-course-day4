@@ -1,0 +1,1 @@
+New-Item -Type Directory <%= @service_directory %> -Force

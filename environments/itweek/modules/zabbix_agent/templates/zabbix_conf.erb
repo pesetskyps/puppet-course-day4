@@ -1,0 +1,12 @@
+#General Settings
+Server=<%=@zabbix_server_ip%>
+LogFile=c:\Program Files\zabbix\zabbix_agentd.log
+EnableRemoteCommands=1
+Timeout=30
+#====For autoregistration====
+ServerActive=<%=@zabbix_server_ip%>
+HostMetadata=<%=@system%>
+RefreshActiveChecks=120
+DebugLevel=4
+LogFileSize=5
+#==== End For autoregistration====

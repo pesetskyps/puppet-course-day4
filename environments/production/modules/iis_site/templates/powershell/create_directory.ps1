@@ -1,0 +1,1 @@
+New-Item -Type Directory <%= @site_directory %> -Force

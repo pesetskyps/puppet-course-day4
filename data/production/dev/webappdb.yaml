@@ -8,6 +8,11 @@ iis_site::createsites:
     bindings:
       - 'http/*:23333:'
 
+iis_site::deploy:
+  mysite:
+    deploy_pack_puppet_path: puppet:///modules/ps_mysite/web.zip
+    deploy_pack_windows_temp_path: c:\temp\web.zip
+
 #sqlexpress
 mssql::install:
   mssql:

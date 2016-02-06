@@ -16,7 +16,7 @@
  	$password,
 
 	#config change
-	$configs,
+	$configs
  ) 
  {
  	if (($username != '') and ($password == '')) {

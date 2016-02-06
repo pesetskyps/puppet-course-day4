@@ -1,3 +1,2 @@
-class profile::dev::iis {
-  include ps_iis::iis
+class profile::dev::iis inherits profile::base::allproducts::iis {
 }

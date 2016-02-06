@@ -5,6 +5,7 @@
   - "%{::environment}/node/%{::fqdn}"
   - "%{::environment}/%{::env}/%{::role}"
   - "%{::environment}/role/%{::role}"
+  - "%{::environment}/role/base_%{::role}"
   - "%{::environment}/defaults"
 
 :yaml:

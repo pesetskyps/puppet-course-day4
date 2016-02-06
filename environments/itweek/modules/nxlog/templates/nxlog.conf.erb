@@ -1,0 +1,80 @@
+define ROOT C:\Program Files (x86)\nxlog
+
+Moduledir %ROOT%\modules
+CacheDir %ROOT%\data
+Pidfile %ROOT%\data\nxlog.pid
+SpoolDir %ROOT%\data
+LogFile %ROOT%\data\nxlog.log
+
+<Extension json>
+    Module      xm_json
+</Extension>
+
+<Extension dicom-multi>
+    Module  xm_multiline
+    HeaderLine  /(^DEBUG\s\d{4}-\d{2}-\d{2}.*$)|(^ERROR\s\d{4}-\d{2}-\d{2}.*$)/
+</Extension>
+
+<Extension Scheduled_status>
+    Module xm_exec
+    <Schedule>
+        Every 1800 sec
+        Exec log_info ("Agent is working fine");
+    </Schedule>
+</Extension>
+
+#myservice
+<Input myservice>
+    Module  im_file
+    File    "C:\\ps\\logs\\myservice\\log.txt"
+    SavePos TRUE
+    InputType   dicom-multi
+    Exec $LogSeverityType = "application";
+    Exec $LogType = "application";
+    Exec $Environment = "itweek";
+    Exec $Message = $raw_event;
+    Exec    sleep(500);
+</Input>
+#C:\ps\logs\mysite\log.txt
+<Input mysite>
+    Module  im_file
+    File    "C:\\ps\\logs\\mysite\\log.txt"
+    SavePos TRUE
+    InputType   dicom-multi
+    Exec $LogSeverityType = "application";
+    Exec $LogType = "application";
+    Exec $Environment = "itweek";
+    Exec $Message = $raw_event;
+    Exec    sleep(500);
+</Input>
+#IIS c:\inetpub\logs
+<Input IIS>
+    Module  im_file
+    File    "C:\\inetpub\\logs\\W3SVC4\\u_ex*.log"
+    SavePos TRUE
+    InputType   dicom-multi
+    Exec $LogSeverityType = "IIS";
+    Exec $LogType = "IIS";
+    Exec $Environment = "itweek";
+    Exec $Message = $raw_event;
+    Exec    sleep(500);
+</Input>
+
+
+<Processor buffer1>
+    Module  pm_buffer
+    MaxSize 10240
+    Type    Mem
+    WarnLimit   5120
+</Processor>
+
+<Output logstashtcp>
+  Module om_tcp
+  Host 10.240.48.53
+  Port 3335
+  Exec to_json();
+</Output>
+
+<Route 1>
+    Path myservice, mysite,IIS => buffer1 => logstashtcp
+</Route>
