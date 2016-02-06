@@ -1,7 +1,7 @@
 ---
 iis_site::createsites:
   mysite:
-    sitedirectory: c:\ps\mysite2
+    sitedirectory: c:\ps\mysite
     bindings:
       - 'http/*:8080:'
   thier:

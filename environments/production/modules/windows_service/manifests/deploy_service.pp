@@ -22,6 +22,7 @@ define windows_service::deploy_service(
   unzip { $servicename:
       source  => $deploy_pack_windows_temp_path,
       creates => $creates_file,
+      destination => $site_directory,
       require => [File[$deploy_pack_windows_temp_path],Exec["create_${service_directory}"]],
   }
 }
