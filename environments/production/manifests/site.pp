@@ -3,13 +3,13 @@ $global_var = 'globalvar'
 
 node default {
   $node_var = "node_var"
-  # #parameters
+  #parameters
   # class {"ps_m4_examples::parameters":
   # 	sitename => "testlongname",
   # 	# notify_me => 'bla',
   # 	foldername => "ps_bla",
   # 	notify_me => 'true',
-  # 	myhashparam => {config => "app.config",}
+  # 	myhashparam => {config => "web.config",}
   # }
 
   # #params principle
@@ -17,13 +17,13 @@ node default {
   # 	sitename => "yaaaahooooo",
   # }
 
-  # #variable scoping
-  # class {"ps_m4_examples::variables_invoker":
-  #   show_dynamic_scope => true,
-  #   show_parent_level_scope => true,
-  #   show_node_level_scope => true,
-  #   show_global_scope => true,
-  # }
+   #variable scoping
+   #class {"ps_m4_examples::variables_invoker":
+   #  show_dynamic_scope => false,
+   #  show_parent_level_scope => true,
+   #  show_node_level_scope => true,
+   #  show_global_scope => true,
+   #}
 
   # require class
   # include ps_m4_examples::require_example
@@ -32,7 +32,7 @@ node default {
   # include ps_m4_examples::resource_defaults_ex
 
   # stdlib functions
-  # include ps_m4_examples::stdlib_ex
+  include ps_m4_examples::stdlib_ex
   
   #bad practicies
   # if defined
@@ -43,8 +43,8 @@ node default {
   # include role::web
 }
 
-# node 'win-r3sga74n50h' {
-#  include role::northwind::dev::webappdb
-#   # include role::web
-# # notify{"bla":}
-# }
+#node 'win-r3sga74n50h' {
+# include role::northwind::dev::webappdb
+#  # include role::web
+## notify{"bla":}
+#}

@@ -31,13 +31,13 @@ windows_service::create_services:
     startup_type: auto
     username: LocalSystem
     password: "`\"`\""
-    configs:
-      web.config:
-        windows_config_path: c:\ps\service\myservice\NorthWind.console.exe.config
-        puppet_template_path: windows_service/NorthWind.console.exe.config.erb
-        values:
-          connectionstring: data source=localhost,1433;initial catalog=Northwind;User Id=sa; password=Zabbix_2015;
-          wcfserver: localhost
+    # configs:
+    #   web.config:
+    #     windows_config_path: c:\ps\service\myservice\NorthWind.console.exe.config
+    #     puppet_template_path: windows_service/NorthWind.console.exe.config.erb
+    #     values:
+    #       connectionstring: data source=localhost,1433;initial catalog=Northwind;User Id=sa; password=Zabbix_2015;
+    #       wcfserver: localhost
 
 #profile::dev::sqlexpress
 mssql::install:

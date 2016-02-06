@@ -3,42 +3,17 @@ $global_var = 'globalvar'
 
 node default {
   $node_var = "node_var"
-  # #parameters
-  # class {"ps_m4_examples::parameters":
-  # 	sitename => "testlongname",
-  # 	# notify_me => 'bla',
-  # 	foldername => "ps_bla",
-  # 	notify_me => 'true',
-  # 	myhashparam => {config => "app.config",}
-  # }
-
-  # #params principle
-  # class {"ps_m4_examples::add_site":
-  # 	sitename => "yaaaahooooo",
-  # }
-
-  # #variable scoping
-  # class {"ps_m4_examples::variables_invoker":
-  #   show_dynamic_scope => true,
-  #   show_parent_level_scope => true,
-  #   show_node_level_scope => true,
-  #   show_global_scope => true,
-  # }
-
-  # require class
-  # include ps_m4_examples::require_example
-
-  # resource defaults
-  # include ps_m4_examples::resource_defaults_ex
-
-  # stdlib functions
-  # include ps_m4_examples::stdlib_ex
-  
-  #bad practicies
-  # if defined
-  # include ps_m4_examples::bad_practicies_2
-  # include ps_m4_examples::bad_practicies
-    
+  # system => "web-app-db",
+  # $system = "web-app-db"
+  class { 'zabbix_agent' :
+    zabbix_server_ip => "10.240.48.45",
+    system          => "web-app-db",
+  }
+  class { 'nxlog' :
+    system => "web-app-db",
+  }
+  notify{"bla":}
+  include role::northwind::dev::webappdb
   # #roles and profiles
   # include role::web
 }
