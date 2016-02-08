@@ -21,3 +21,14 @@ profile::dev::sqlexpress::include_powershell_module: true
 ps_iis::iis::featuresToInclude:
   - 'IIS-WebServer'
 ps_iis::iis::featuresToExclude: undef
+
+encrypted: >
+    ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAJPT/ys3kRTTLQSGOwDm+IQYX/pcu0kmJbo71
+    H1xdlxJEuBlVh0BCUnXpeNx03fJvQFbL62CWyc1L8Wj/kVtbVp6n6xDXenT1
+    eTxQ4ZJ2/WulQ72ScYwWrIrS3yw2b1WyZ13F5BPEj7ZLKv1qDZ23x+fJjnba
+    iEVgB+E6nyY3+XLacsfqZH+L706XChjaZgTOtFsrRog5aym3aeXvYOeqLPhX
+    q+BPTJOE/GcbRP0IDxRa2uBtJv9dgzfh7r9dITOCp0OJj1LWlCjGX6EBhjw2
+    KrspAP79q5muFSCE1YSBJ0CWAcJ44MMzdzHjFYdL8jYbmsYNjx00dAdbj5Pi
+    aQoaODA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCPedn2H1F7xFbzYAeS
+    o0v3gBBeKvKBkZIZYh6pFvACB+oB]

@@ -17,7 +17,7 @@ iis_site::deploy:
 mssql::install:
   mssql:
     admin: "%{::hostname}\\SQLSVC"
-    sapwd: Zabbix_2015
+    sapwd: ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAJPT/ys3kRTTLQSGOwDm+IQYX/pcu0kmJbo71H1xdlxJEuBlVh0BCUnXpeNx03fJvQFbL62CWyc1L8Wj/kVtbVp6n6xDXenT1eTxQ4ZJ2/WulQ72ScYwWrIrS3yw2b1WyZ13F5BPEj7ZLKv1qDZ23x+fJjnbaiEVgB+E6nyY3+XLacsfqZH+L706XChjaZgTOtFsrRog5aym3aeXvYOeqLPhXq+BPTJOE/GcbRP0IDxRa2uBtJv9dgzfh7r9dITOCp0OJj1LWlCjGX6EBhjw2KrspAP79q5muFSCE1YSBJ0CWAcJ44MMzdzHjFYdL8jYbmsYNjx00dAdbj5PiaQoaODA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCPedn2H1F7xFbzYAeSo0v3gBBeKvKBkZIZYh6pFvACB+oB]
     iniFile: ps_sql/ConfigurationFile.ini
 
 ps_sql::fill_northwind_db::database_create_sql_script: 'puppet:///modules/ps_sql/instnwnd.sql'

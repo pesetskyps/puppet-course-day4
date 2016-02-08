@@ -22,7 +22,7 @@ define iis_site::deploy(
   unzip { $sitename:
       source  => $deploy_pack_windows_temp_path,
       creates => $creates_file,
-      destination => $site_directory
+      destination => $site_directory,
       require => [File[$deploy_pack_windows_temp_path],Exec["create_${site_directory}"]],
   }
 }

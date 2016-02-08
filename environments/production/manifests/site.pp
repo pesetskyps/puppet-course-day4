@@ -1,41 +1,6 @@
 $powershell = 'C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe -ExecutionPolicy RemoteSigned -noprofile -nologo -noninteractive -command'
 $global_var = 'globalvar'
 
-# class directory_virt{
-#   @file {
-#     '/tmp/bla':
-#     ensure => directory,
-#   }
-
-#   @file {
-#     '/tmp/bla/hh':
-#     ensure => directory,
-#   }
-# }
-
-# class files {
-#   file {
-#     '/tmp/bla/svc':
-#     ensure => present,
-#   }
-#   File <| title == '/tmp/bla' |> -> File['/tmp/bla/svc']
-# }
-
-# class files2 {
-#   file {
-#     '/tmp/bla/svc2':
-#     ensure => present,
-#   }
-
-#   file {
-#     '/tmp/bla/hh/gg':
-#     ensure => present,
-#   }
-
-#   File <| title == '/tmp/bla' |> -> File['/tmp/bla/svc2']
-#   File <| title == '/tmp/bla' |> -> File <| title == '/tmp/bla/hh' |> -> File['/tmp/bla/hh/gg']
-# }
-
 node default {
   $node_var = "node_var"
   #parameters
@@ -52,12 +17,6 @@ node default {
   # 	sitename => "yaaaahooooo",
   # }
 
-# include directory_virt
-# include files
-# include files2
-#realize(File['/tmp/bla'])
-
-
    #variable scoping
    #class {"ps_m4_examples::variables_invoker":
    #  show_dynamic_scope => false,
@@ -73,7 +32,7 @@ node default {
   # include ps_m4_examples::resource_defaults_ex
 
   # stdlib functions
-  include ps_m4_examples::stdlib_ex
+  # include ps_m4_examples::stdlib_ex
   
   #bad practicies
   # if defined
@@ -81,12 +40,15 @@ node default {
   # include ps_m4_examples::bad_practicies
     
   #virtual resources
-  include ps_m4_examples::virtual::users
-  include ps_m4_examples::virtual::invoker
-  include ps_m4_examples::virtual::invoker2
+  # include ps_m4_examples::virtual::users
+  # include ps_m4_examples::virtual::invoker
+  # include ps_m4_examples::virtual::invoker2
+
 
   # #roles and profiles
   # include role::web
+  #encryption
+  notify{hiera('encrypted'):}
 }
 
 node 'win-r3sga74n50h' {

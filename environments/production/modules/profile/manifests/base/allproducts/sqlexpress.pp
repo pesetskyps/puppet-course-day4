@@ -6,6 +6,7 @@ class profile::base::allproducts::sqlexpress
 	$include_powershell_module = hiera(sqlexpress::include_powershell_module),
 ) 
 {
+	# notify{hiera('mssql::install')['mssql']['sapwd']:}
 	$sqlclass = hiera_hash('mssql::install')
 	#install mssql
 	create_resources('class',$sqlclass)

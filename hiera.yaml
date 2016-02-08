@@ -1,6 +1,8 @@
 ---
 :backends:
+  - eyaml
   - yaml
+
 :hierarchy:
   - "%{::environment}/node/%{::fqdn}"
   - "%{::environment}/role/%{::env}/%{::role}"
@@ -15,4 +17,11 @@
 # When specifying a datadir, make sure the directory exists.
 # datadir shouuld identified by two spaces!!!
   :datadir: /etc/puppet/data
+
+:eyaml:
+  :datadir: '/etc/puppet/data'
+  :pkcs7_private_key: /etc/puppet/keys/private_key.pkcs7.pem
+  :pkcs7_public_key:  /etc/puppet/keys/public_key.pkcs7.pem
+  :extension: 'yaml'
+
 :merge_behavior: deeper
