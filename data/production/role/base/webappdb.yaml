@@ -1,0 +1,54 @@
+---
+ps_iis::iis::featuresToInclude:
+  - 'IIS-WebServer'
+  - 'IIS-StaticContent'
+  - 'IIS-ASPNET45'
+ps_iis::iis::featuresToExclude:
+  - 'IIS-HttpErrors'
+
+#mysite
+iis_site::createsites:
+  mysite:
+    sitedirectory: c:\ps\mysite4564564
+    sitename: mysite
+    apppoolname: mysite
+  thier:
+    sitedirectory: c:\ps\their
+    sitename: thier
+    apppoolname: thier
+
+#myservice
+iis_site::deploy:
+  mysite:
+    sitename: mysite
+    creates_file: c:\ps\mysite\Global.asax
+    site_directory: c:\ps\mysite
+
+#sqlexpress
+mssql::install:
+  mssql:
+    media: c:\temp\SQLEXPR_x64_ENU
+    instancename: MSSQLSERVER
+    features: SQLENGINE
+    instancedir: C:\Program Files\Microsoft SQL Server
+    ascollation: Latin1_General_CI_AS
+    sqlcollation: SQL_Latin1_General_CP1_CI_AS
+
+ps_sql::fill_northwind_db::instance: "%{::hostname}"
+ps_sql::fill_northwind_db::database_check_script: 'ps_sql/powershell/check_dabatase_exist.ps1'
+ps_sql::fill_northwind_db::database_create_sql_script_windows_tmp_path: 'c:\temp\instnwnd.sql'
+
+sqlexpress::include_powershell_module: true
+
+#myservice
+myservice::deploy:
+  myservice:
+    servicename: myservicestaging
+    creates_file: c:\ps\myservice\EntityFramework.dll
+    service_directory: c:\ps\myservice
+
+myservice::create:
+  myservice:
+    servicename: myservicestaging
+    servicedirectory: c:\ps\myservice
+    exe_Name: NorthWind.console.exe    

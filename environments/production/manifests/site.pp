@@ -80,6 +80,11 @@ node default {
   # include ps_m4_examples::bad_practicies_2
   # include ps_m4_examples::bad_practicies
     
+  #virtual resources
+  include ps_m4_examples::virtual::users
+  include ps_m4_examples::virtual::invoker
+  include ps_m4_examples::virtual::invoker2
+
   # #roles and profiles
   # include role::web
 }

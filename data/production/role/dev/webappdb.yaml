@@ -1,0 +1,42 @@
+---
+iis_site::createsites:
+  mysite:
+    sitedirectory: c:\ps\mysite
+    bindings:
+      - 'http/*:8080:'
+  thier:
+    bindings:
+      - 'http/*:23333:'
+
+iis_site::deploy:
+  mysite:
+    deploy_pack_puppet_path: puppet:///modules/ps_mysite/web.zip
+    deploy_pack_windows_temp_path: c:\temp\web.zip
+
+#sqlexpress
+mssql::install:
+  mssql:
+    admin: "%{::hostname}\\SQLSVC"
+    sapwd: Zabbix_2015
+    iniFile: ps_sql/ConfigurationFile.ini
+
+ps_sql::fill_northwind_db::database_create_sql_script: 'puppet:///modules/ps_sql/instnwnd.sql'
+
+#myservice
+myservice::deploy:
+  myservice:
+    deploy_pack_puppet_path: puppet:///modules/ps_myservice/wcf.zip
+    deploy_pack_windows_temp_path: c:\temp\wcf.zip
+
+myservice::create:
+  'myservice':
+    startup_type: demand
+    username: LocalSystem
+    password: "`\"`\""
+    configs:
+      app.config:
+        windows_config_path: c:\ps\myservice\NorthWind.console.exe.config
+        puppet_template_path: windows_service/NorthWind.console.exe.config.erb
+        values:
+          connectionstring: data source=localhost,1433;initial catalog=Northwind;User Id=sa; password=Zabbix_2015;
+          wcfserver: localhost

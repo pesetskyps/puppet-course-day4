@@ -3,9 +3,8 @@
   - yaml
 :hierarchy:
   - "%{::environment}/node/%{::fqdn}"
-  - "%{::environment}/%{::env}/%{::role}"
-  - "%{::environment}/role/%{::role}"
-  - "%{::environment}/role/base_%{::role}"
+  - "%{::environment}/role/%{::env}/%{::role}"
+  - "%{::environment}/role/base/%{::role}"
   - "%{::environment}/defaults"
 
 :yaml:
